@@ -1,0 +1,36 @@
+oluştur -->
+	git init
+	git remote add root https://github.com/EnsarYIRTICI/<repository-name>.git
+	git add .
+	git commit -m "first"
+	git push root head
+
+
+
+güncelle -->
+	git add .
+	git commit -m "bugfix"
+	git push -u root head
+
+
+değişiklikleri çek --> git pull
+
+
+remote -->
+	liste --> git remote -v
+	url değiştirme --> git remote set-url root https://github.com/EnsarYIRTICI/<repository-name>.git
+
+
+
+ignore edilmişlerin takibini durdur --> git rm -r --cached .
+
+
+
+linux -->
+	 login -->
+		sudo apt update
+		sudo apt install gh
+		gh auth login
+
+
+

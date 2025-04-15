@@ -1,0 +1,25 @@
+control --> 	egrep -c '(vmx|svm)' /proc/cpuinfo
+		nproc --all
+		lscpu | grep Virtualization
+
+		sudo apt install cpu-checker
+		sudo kvm-ok
+
+
+install --> sudo apt install -y qemu-kvm bridge-utils libvirt-daemon-system libvirt-clients virt-manager virt-viewer
+
+
+create vm --> 
+	sudo virt-install 
+			--name ubuntu-vm 
+			--ram 1024 --vcpus 2 
+			--disk path=/var/lib/libvirt/images/ubuntu.qcow2,size=20 
+			--os-type linux 
+			--os-variant ubuntu20.04 
+			--network bridge=virbr0,model=virtio 
+			--cdrom /mnt/c/MyFiles/MyDocuments/iso/ubuntu-24.04.1-live-server-amd64.iso
+
+
+vm list --> sudo virsh list --all
+
+stop vm --> sudo virsh destroy <vm-name>

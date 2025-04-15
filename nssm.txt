@@ -1,0 +1,24 @@
+install -->
+	gui --> nssm install <service_name>
+
+	cli -->
+		& nssm install <service_name> <path> <argument>
+		& nssm set <service_name> AppDirectory <app-directory>
+
+path -->
+
+	C:\Program Files\nodejs\node.exe
+	C:\Program Files\nodejs\npm.cmd
+
+
+app directory -->
+
+	C:\Users\ensar\repo\express\<app-name>
+	C:\Users\ensar\repo\react_express\<app-name>\server
+		
+
+argument --> 
+	
+	index.js
+	run start:prod
+

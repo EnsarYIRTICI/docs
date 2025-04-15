@@ -1,0 +1,128 @@
+yardım -->  docker --help
+
+
+system -->
+
+	sistem kullanımı bilgisi --> docker system df
+	sistem temizliği --> docker system prune
+
+
+container -->
+
+	kur --> docker run [args] <image-name> 
+
+		args --> 
+			-d
+			-it
+			-p <port>:<port> 
+			--name <container-name> 
+			--restart always
+			
+			-v /path/data/:/var/data 
+			-e <variable>=<value>
+			--network <network-name>
+
+	isim değiştir --> docker rename <my-old-container> <my-new-container>
+
+	liste --> docker ps
+	tam liste --> docker ps -a
+
+	formatlı tam liste -->
+			docker ps -a --format "{{.ID}}: {{.Names}}"
+
+			diğer formatlar --> 
+				{{.Command}} - {{.Status}} -  {{.CreatedAt}} - {{.RunningFor}} - {{.Ports}} - {{.Networks}}
+
+	log --> docker logs -f <container-name-or-id> 
+
+	bağlan --> docker exec -it <container-name-or-id> /bin/bash
+	bilgi almak için --> docker inspect <container-name-or-id>
+
+	başlat --> docker start <container-name-or-id> 
+	durdur --> docker stop <container-name-or-id> 
+
+	sil --> docker rm <container-name-or-id> 
+
+	durmuş olanları temizle --> docker container prune
+
+
+copy -->
+	os to docker -->
+		docker cp <path> <container_id>:<path>
+
+	docker to os -->
+		docker cp <container_id>:<path> <path>
+
+
+image -->
+
+	liste --> docker images	
+
+	indir --> docker pull <image_name>
+	build --> docker build --build-arg NODE_ENV=development -t <image-name> .
+	commit --> docker commit <container-name-or-id> <image-name>
+
+	tag --> docker tag <my-old-image> <my-new-image>
+
+	sil --> docker rmi <image-name-or-id> 
+
+	sarkanları temizle --> docker image prune
+
+
+
+volume-->
+
+	liste --> docker volume ls
+	oluştur --> docker volume create <volume-name>
+	detay --> docker volume inspect <volume-name>
+
+	sil --> docker volume rm <volume-name>
+
+	kullanılmayanları temizle --> docker volume prune
+
+
+
+compose -->
+
+	build et ve çalıştır --> docker-compose up --build	
+	seçili servisi build et --> docker-compose build <service-name>
+
+	çalıştır --> docker-compose up
+	durdur --> docker-compose down
+
+
+
+network -->
+
+	list -->  docker network ls
+
+	oluştur --> docker network create [args] <network-name>
+	
+		args -->
+			-d <driver-name>
+			--subnet=192.168.1.0/24 
+			--gateway=192.168.1.1 
+			-o parent=eth0
+
+
+swarm -->
+
+	init --> docker swarm init --advertise-addr 192.168.1.104
+	leave --> docker swarm leave --force
+
+ 	node -->
+		list --> docker node ls
+		ip --> docker node inspect <node-ID> --format '{{ .Status.Addr }}'
+
+	service -->
+		list --> docker service ls
+		create --> docker service create --name my-nginx --publish 8080:80 --replicas 2 nginx
+		scale --> docker service scale my-nginx=3
+
+
+
+
+
+
+
+

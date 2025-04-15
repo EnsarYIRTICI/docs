@@ -1,0 +1,2 @@
+create key --> openssl genpkey -algorithm RSA -out panelKey.pem
+create cert with key --> openssl req -new -x509 -key panelKey.pem -out panelCert.pem -days 365

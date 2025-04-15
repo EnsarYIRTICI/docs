@@ -1,0 +1,15 @@
+git clone https://opendev.org/openstack/devstack devstack
+
+cd devstack
+cp samples/local.conf .
+
+sudo micro samples/local.conf
+
+	[[local|localrc]]
+
+	ADMIN_PASSWORD=secret
+	DATABASE_PASSWORD=$ADMIN_PASSWORD
+	RABBIT_PASSWORD=$ADMIN_PASSWORD
+	SERVICE_PASSWORD=$ADMIN_PASSWORD
+
+	HOST_IP=ip-address

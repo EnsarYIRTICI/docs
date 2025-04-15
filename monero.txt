@@ -1,0 +1,13 @@
+cd monero 
+
+deamon --> ./build/Linux/master/release/bin/monerod
+
+wallet --> ./build/Linux/master/release/bin/monero-wallet-cli 
+
+		cüzdan oluştur --> --generate-new-wallet turing_wallet
+		mevcut cüzdanı aç --> --wallet-file turing_wallet
+
+		monero bağlan --> --daemon-address node.moneroworld.com:18089 --daemon-ssl-allow-any-cert
+		monero ağına tor ile bağlan --> --daemon-address node.moneroworld.com:18089 --proxy 127.0.0.1:9050 --daemon-ssl-allow-any-cert
+
+

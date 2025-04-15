@@ -1,0 +1,43 @@
+distribution -->
+
+	list --> wsl -l -v
+
+	default --> wsl --set-default <distribution-name>
+
+	start --> wsl -d <distribution-name>
+	stop --> wsl --shutdown
+
+	version --> wsl --set-version <distribution-name> 2
+	update -->  wsl --update
+
+	delete -->  wsl --unregister <distribution-name>
+
+	
+
+	
+config -->
+
+	/etc/wsl.conf -->
+
+				[automount]
+				options = "metadata"
+
+				[boot]
+				systemd=true
+
+
+	C:\Users\ensar.wslconfig -->
+
+
+				[wsl2]
+				# networkingMode=mirrored
+
+				networkingMode=bridged
+				vmSwitch=external-switch
+
+				memory=2GB
+				processors=4
+
+				[network]
+				generateResolvConf = true
+

@@ -1,0 +1,214 @@
+system -->
+	version --> uname -a
+	kod name --> lsb_release -c
+
+
+grub -->
+
+	boot list --> sudo grep "menuentry" /boot/grub/grub.cfg
+
+	install --> sudo grub-install
+	update --> sudo update-grub
+
+	settings --> sudo micro /etc/default/grub
+
+		GRUB_DEFAULT="Windows Boot Manager (on /dev/nvme0n1p1)"
+
+
+	iso repair -->
+
+		sudo su -
+		fdisk -l
+		mount /dev/nvme0n1p5 /mnt
+		mount /dev/nvme0n1p1 /mnt/boot/efi
+
+		for i in /dev /dev/pts /proc /sys /run; do mount -B $i /mnt$i; done
+
+		chroot /mnt
+		mount -t efivarfs none /sys/firmware/efi/efivars
+		grub-install /dev/nvme0n1
+		update-grub
+
+
+	rescue repair -->
+		
+		set prefix=(hd0,gpt4)/boot/grub
+		insmod normal
+		normal
+
+
+package -->
+
+	apt --> 
+		source --> ls /etc/apt/sources.list.d/
+
+
+shell -->
+
+	konsol çıktısı --> echo 'Merhaba Dünya' 
+
+	file content --> cat dosya1.sh
+	last content --> tail -f dosya.log
+
+	dosya aç --> nano dosya1.sh
+
+	variable --> num_1 = 5
+
+
+
+security -->
+
+	
+	user -->
+
+		me --> whoami
+
+		create user --> sudo adduser <user-name>
+		change user on terminal --> sudo -u <user> -s
+
+	netstat --> sudo netstat -tuln
+
+
+	firewall -->
+
+		status --> sudo ufw status
+		change --> sudo ufw enable/disable
+	
+	
+	interface -->
+
+		mevcut --> ifconfig
+		diğer --> ip addr
+
+		kullan --> sudo ifconfig ethX up
+		oluştur --> sudo ip link add ethY type bridge
+		sil --> sudo ip link delete ethY
+
+
+
+
+file -->
+
+	read -->
+		all --> cat file.sh
+		start --> head -10 file.sh
+		end --> less -10 file.sh
+
+	find --> whereis python3
+	
+	list --> ls
+		 ls -l
+
+	file with content --> echo 'Merhaba Dünya' > example_file
+	empty file --> > example_file
+	copy --> cp .env.example .env.development	
+
+	delete --> sudo rm -rf /path/folder
+
+	path -->
+		
+		create --> mkdir
+
+		home --> cd ~
+		root --> cd/
+
+	permission -->
+
+		dosya sahipliği --> sudo chown -R mysql:mysql /mnt/mydata/mariadb
+		yetki düzeyi --> sudo chmod -R 755 /mnt/mydata/MariaDB
+
+		types -->
+
+			num	meaning
+
+			7	rwx	Okuma, yazma ve çalıştırma izni
+			6	rw-	Okuma ve yazma izni
+			5	r-x	Okuma ve çalıştırma izni
+			4	r--	Sadece okuma izni
+			3	-wx	Yazma ve çalıştırma izni
+			2	-w-	Sadece yazma izni
+			1	--x	Sadece çalıştırma izni
+			0	---	Hiçbir izin yok
+
+
+service -->
+	
+	process -->
+		list --> ps aux
+
+	screen --> 
+		list --> screen -ls
+
+		start --> screen -dmS panel_client_build bash -c '~/bash/build_process.sh; exit'
+			   screen -dmS panel_client_build bash -c 'cd ~/repo/panel/client && NODE_OPTIONS="--max-old-space-size=4096" && npm run build'
+		
+		connect --> screen -r <PID>
+		leave --> CTRL + A + D
+
+		delete -->  screen -X -S <PID> quit
+
+
+	systemctl -->
+
+		list -->
+
+			systemctl list-units --type=service
+			systemctl list-units --type=service --state=running
+
+
+
+disk -->
+	
+	list --> lsblk
+	mount --> sudo mount /dev/nvme1n1 /mnt/nvme1n1
+
+	use --> 
+		general --> df -h
+		by file path -->  du -sh /file_name/*
+		
+	create link --> sudo ln -s /mnt/nvme1n1/mydata/turing_panel /var/lib/mysql/turing_panel	
+
+	partition -->
+		
+		delete --> 
+			sudo parted /dev/nvme0n1 rm 9
+			sudo update-grub
+
+
+
+memory -->
+
+	genel kullanım --> free -h
+
+	buff/cache clear --> sudo sync && sudo sysctl -w vm.drop_caches=3
+
+	swap -->
+
+		create -->
+			sudo fallocate -l 2G /swapfile
+			sudo chmod 600 /swapfile
+			sudo mkswap /swapfile
+			sudo swapon /swapfile
+
+
+		disable -->
+			sudo swapoff /swapfile
+			sudo rm /swapfile
+			sudo nano /etc/fstab
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

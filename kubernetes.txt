@@ -1,0 +1,26 @@
+pods --> 
+	list --> kubectl get pods
+
+
+
+replicasets -->
+	list --> kubectl get replicasets
+
+
+
+deployment -->
+	list --> kubectl get deployments
+
+
+
+nodes --> 
+	list --> kubectl get nodes
+
+
+
+service -->
+	list --> kubectl get svc
+
+
+namespaces -->
+	list --> kubectl get namespaces

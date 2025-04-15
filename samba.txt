@@ -1,0 +1,50 @@
+setup --> 
+
+	sudo apt update
+	sudo apt install samba -y
+
+
+restart --> sudo systemctl restart smbd
+
+	
+users -->
+
+	list --> sudo pdbedit -L
+
+	create --> 
+		sudo adduser yusuf
+		sudo smbpasswd -a yusuf
+		sudo usermod -aG sambashare yusuf
+
+create share point -->
+
+	sudo mkdir -p /srv/samba/paylasim
+
+	sudo chown -R :sambashare /srv/samba/paylasim
+	sudo chmod -R 0770 /srv/samba/paylasim
+
+
+share point settings -->
+
+	sudo micro /etc/samba/smb.conf
+	
+		[Paylasim]
+		path = /srv/samba/paylasim
+		browseable = yes
+		read only = no
+		guest ok = no
+		valid users = ensar, Yusuf
+
+
+		[global]
+		server min protocol = SMB2
+		server max protocol = SMB3
+
+		client min protocol = SMB2
+		client max protocol = SMB3
+
+
+connect -->
+
+	sudo apt install smbclient
+	smbclient -m SMB3 //192.168.1.104/Paylasim -U yusuf

@@ -1,0 +1,38 @@
+MySQL kurulum --> 
+	\mysql-5.7.9-winx64\bin\mysqld --defaults-file="/mysql/mysql-5.7.9-winx64/my.ini"
+	\mysql-5.7.9-winx64\bin\mysqld --initialize-insecure
+	\mysql-5.7.9-winx64\bin\mysqld --install MySQL57
+
+MariaDB kurulum -->
+	\mariadb-10.4.32-winx64\ -->
+		my.ini, \tmp, \data 
+
+	\mariadb-10.4.32-winx64\bin\mysqld --defaults-file="\mariadb-10.4.32-winx64\my.ini"
+	\mariadb-10.4.32-winx64\bin\mysql_install_db
+	\mariadb-10.4.32-winx64\bin\mysqld --install MariaDB104
+
+
+yedek --> mysqldump -u <username> -p <dbname> > backup.sql
+içeri aktar --> sudo mysql -u root mydb < ~/path/db.sql
+
+version --> SELECT VERSION();
+depolama motorunu göster --> SHOW VARIABLES LIKE 'default_storage_engine';
+
+
+kullanıcı oluştur -->
+
+	CREATE USER 'empire_user'@'%' IDENTIFIED BY 'empire_password';
+	
+tam yetki --> 	
+
+	GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'password';
+	FLUSH PRIVILEGES;
+
+yetkiyi geri al -->
+
+	REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'root'@'%';
+	FLUSH PRIVILEGES;
+
+
+
+

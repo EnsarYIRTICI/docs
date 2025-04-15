@@ -1,0 +1,7 @@
+setup --> sudo dpkg-reconfigure slapd
+
+add user --> ldapadd -H ldap://localhost -D "cn=admin,dc=ldap,dc=blackcatverse,dc=com" -W -f ~/ldif/user.ldif
+		
+search --> 
+	ldapsearch -x -H ldap://ldap.blackcatverse.com -b dc=ldap,dc=blackcatverse,dc=com
+	ldapsearch -x -H ldap://ldap.blackcatverse.com -D "cn=Ensar YIRTICI,dc=ldap,dc=blackcatverse,dc=com" -W -b "dc=ldap,dc=blackcatverse,dc=com"

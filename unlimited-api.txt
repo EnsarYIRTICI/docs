@@ -1,0 +1,6 @@
+https://alquran.cloud/api
+https://restcountries.com/
+https://dummyjson.com/
+https://jsonplaceholder.typicode.com/
+https://jsonapi.org/
+https://turkiyeapi.dev/

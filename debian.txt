@@ -1,0 +1,26 @@
+wget -->
+	sudo apt update && sudo apt upgrade -y
+	sudo apt install wget curl -y
+
+
+chrome --> 
+	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+	sudo dpkg -i google-chrome-stable_current_amd64.deb
+
+
+nvidia -->
+			
+	install --> 
+		sudo apt update && sudo apt install build-essential dkms linux-headers-$(uname -r) -y
+		
+		sudo chmod +x NVIDIA-Linux-x86_64-570.133.07.run
+		sudo ./NVIDIA-Linux-x86_64-570.133.07.run
+
+		
+	check --> nvidia-smi
+
+
+
+
+
+

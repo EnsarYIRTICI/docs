@@ -1,0 +1,12 @@
+vm -->
+	list -->
+		all --> VBoxManage list vms
+		running --> VBoxManage list runningvms
+
+	start --> VBoxManage startvm "machine-name" --type headless
+
+	stop --> 
+		poweroff --> VBoxManage controlvm "machine-name" poweroff
+		savestate --> VBoxManage controlvm "machine-name" savestate
+
+	delete --> VBoxManage unregistervm "machine-name" --delete

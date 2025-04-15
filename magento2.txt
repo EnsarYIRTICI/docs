@@ -1,0 +1,8 @@
+https://commercemarketplace.adobe.com/
+composer config --global --auth http-basic.repo.magento.com <PUBLIC_KEY> <PRIVATE_KEY>
+
+cd C:\MyProgramFiles\xampp\htdocs\>
+composer create-project --repository=https://repo.magento.com magento/project-community-edition magento2
+
+cd C:\MyProgramFiles\xampp\htdocs\magento2>
+php bin/magento setup:install --base-url="http://localhost/magento2/" --db-host="localhost" --db-name="magento2" --db-user="root" --db-password="turing" --admin-firstname="Admin" --admin-lastname="User" --admin-email="admin@example.com" --admin-user="admin" --admin-password="Admin123!" --language="en_US" --currency="USD" --timezone="Europe/Istanbul" --use-rewrites=1 --search-engine="elasticsearch7" --elasticsearch-host="localhost" --elasticsearch-port=9200 --elasticsearch-enable-auth=1 --elasticsearch-username="elastic" --elasticsearch-password="pSkUEP__YIdbhMBF182+"

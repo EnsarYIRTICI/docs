@@ -1,0 +1,129 @@
+service --> 
+
+	task --> tasklist | findstr <PID>
+
+	net -->
+		start --> net start <service-name>
+		stop --> net stop <service-name>
+
+	sc -->
+		delete --> sc delete <service-name>
+
+
+boot -->
+
+	list --> bcdedit
+	enable --> bcdedit /set {bootmgr} displaybootmenu yes
+	default --> bcdedit /default {current}
+
+	repair manager --> 
+
+		diskpart
+		sel disk 0
+		sel vol 2
+		assign letter=v
+		v: /fs:fat32
+		bcdboot c:\windows /s v: /f UEFI
+
+
+	firmware list --> bcdedit /enum firmware
+
+	delete --> bcdedit /delete {14cb0bbf-0cb9-11f0-a64d-806e6f6e6963}
+
+
+
+disk -->
+
+	disk sizes -->
+
+		1949696 
+		974848
+		487424
+		243712
+		121856
+		60928
+
+
+	diskpart -->
+
+		disk --> 
+			list --> list disk
+			select --> sel disk 0
+
+		volume --> 
+			list --> list vol
+			select --> sel vol 0
+			mount --> assign letter=v
+			shrink --> shrink desired=60928
+
+		partition --> 
+			list --> list partition
+			select --> sel partition 0
+
+		virtual -->
+
+			select --> 
+				select vdisk file="C:\path\ubuntu\ext4.vhdx"
+
+			compact --> compact vdisk
+
+
+security -->
+
+	net -->
+		user -->
+			list --> net user Administrator
+			admin info --> net user Administrator
+
+
+	netstat -->
+
+		list --> netstat -ano
+		port --> netstat -ano | findstr :<PORT>
+
+
+	netsh -->
+
+		firewall --> 
+			inbound --> 
+				list --> netsh advfirewall firewall show rule name=all dir=in
+
+				create tcp --> netsh advfirewall firewall add rule name="<RULE-NAME>" protocol=TCP dir=in localport=<PORTS> action=allow
+
+			outbound --> 
+				list --> netsh advfirewall firewall show rule name=all dir=out
+
+
+		adapter -->
+			metric sort --> 
+				netsh interface ipv4 set interface "Wi-Fi" metric=1
+
+
+		proxy -->
+			list -->
+				netsh interface portproxy show all
+
+			create --> 
+				netsh interface portproxy add v4tov4 listenport=<Port> listenaddress=<IP Address> connectport=<WSL Port> connectaddress=<WSL IPAddress>
+
+			delete -->
+				netsh interface portproxy delete v4tov4 listenaddress=<IP Address> listenport=<Port>
+
+			reset -->
+				netsh interface portproxy reset
+				
+		
+
+
+hardware -->
+
+	wmic -->
+		memory --> wmic memorychip get manufacturer, partnumber, capacity
+
+		disk --> wmic diskdrive get
+
+
+
+
+
+

@@ -1,0 +1,15 @@
+pm2 start ecosystem.config.cjs
+
+pm2 startup
+pm2 save
+
+pm2 stop my-express-app
+pm2 restart my-express-app
+
+pm2 delete my-express-app
+pm2 save --force
+
+pm2 logs
+pm2 list
+
+
