@@ -1,15 +1,15 @@
-yardım -->  docker --help
+help -->  docker --help
 
 
 system -->
 
-	sistem kullanımı bilgisi --> docker system df
-	sistem temizliği --> docker system prune
+	info --> docker system df
+	clean --> docker system prune
 
 
 container -->
 
-	kur --> docker run [args] <image-name> 
+	run --> docker run [args] <image-name> 
 
 		args --> 
 			-d
@@ -22,12 +22,12 @@ container -->
 			-e <variable>=<value>
 			--network <network-name>
 
-	isim değiştir --> docker rename <my-old-container> <my-new-container>
+	rename --> docker rename <my-old-container> <my-new-container>
 
-	liste --> docker ps
-	tam liste --> docker ps -a
+	list --> docker ps
+	full list --> docker ps -a
 
-	formatlı tam liste -->
+	formatted full list -->
 			docker ps -a --format "{{.ID}}: {{.Names}}"
 
 			diğer formatlar --> 
@@ -35,15 +35,15 @@ container -->
 
 	log --> docker logs -f <container-name-or-id> 
 
-	bağlan --> docker exec -it <container-name-or-id> /bin/bash
-	bilgi almak için --> docker inspect <container-name-or-id>
+	conn --> docker exec -it <container-name-or-id> /bin/bash
+	info --> docker inspect <container-name-or-id>
 
-	başlat --> docker start <container-name-or-id> 
-	durdur --> docker stop <container-name-or-id> 
+	start --> docker start <container-name-or-id> 
+	stop --> docker stop <container-name-or-id> 
 
-	sil --> docker rm <container-name-or-id> 
+	del --> docker rm <container-name-or-id> 
 
-	durmuş olanları temizle --> docker container prune
+	clear --> docker container prune
 
 
 copy -->
@@ -56,7 +56,7 @@ copy -->
 
 image -->
 
-	liste --> docker images	
+	list --> docker images	
 
 	indir --> docker pull <image_name>
 	build --> docker build --build-arg NODE_ENV=development -t <image-name> .
@@ -64,31 +64,31 @@ image -->
 
 	tag --> docker tag <my-old-image> <my-new-image>
 
-	sil --> docker rmi <image-name-or-id> 
+	del --> docker rmi <image-name-or-id> 
 
-	sarkanları temizle --> docker image prune
+	clear --> docker image prune
 
 
 
 volume-->
 
-	liste --> docker volume ls
-	oluştur --> docker volume create <volume-name>
-	detay --> docker volume inspect <volume-name>
+	list --> docker volume ls
+	create --> docker volume create <volume-name>
+	info --> docker volume inspect <volume-name>
 
-	sil --> docker volume rm <volume-name>
+	del --> docker volume rm <volume-name>
 
-	kullanılmayanları temizle --> docker volume prune
+	clear --> docker volume prune
 
 
 
 compose -->
 
-	build et ve çalıştır --> docker-compose up --build	
-	seçili servisi build et --> docker-compose build <service-name>
+	up --> docker-compose up --build	
+	build --> docker-compose build <service-name>
 
-	çalıştır --> docker-compose up
-	durdur --> docker-compose down
+	run --> docker-compose up
+	stop --> docker-compose down
 
 
 
@@ -96,7 +96,7 @@ network -->
 
 	list -->  docker network ls
 
-	oluştur --> docker network create [args] <network-name>
+	create --> docker network create [args] <network-name>
 	
 		args -->
 			-d <driver-name>

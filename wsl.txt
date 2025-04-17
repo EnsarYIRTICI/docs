@@ -32,8 +32,8 @@ config -->
 				[wsl2]
 				# networkingMode=mirrored
 
-				networkingMode=bridged
-				vmSwitch=external-switch
+				# networkingMode=bridged
+				# vmSwitch=external-switch
 
 				memory=2GB
 				processors=4
