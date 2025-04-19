@@ -8,7 +8,10 @@ package -->
 					iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 	
 		search --> choco search <package-name>
-		install --> choco install <package-name> -y
+
+		install --> 
+			example --> choco install <package-name> -y
+			example --> choco install pwsh -y
 	
 		version --> choco -v
 		locale packages --> choco list
