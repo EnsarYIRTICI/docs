@@ -31,6 +31,18 @@ boot -->
 	delete --> bcdedit /delete {14cb0bbf-0cb9-11f0-a64d-806e6f6e6963}
 
 
+memory -->
+
+	memory sizes -->
+
+	GB	MB
+	1	1024
+	2	2048
+	4	4096
+	8	8192
+	12	12288
+	16	16384
+
 
 disk -->
 
