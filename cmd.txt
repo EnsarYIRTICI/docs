@@ -31,6 +31,23 @@ boot -->
 	delete --> bcdedit /delete {14cb0bbf-0cb9-11f0-a64d-806e6f6e6963}
 
 
+file --> 
+
+	permission --> 
+
+			info --> icacls <file-name>
+			set --> icacls <file-name> /grant "GRUB/username:per"
+			remove --> icacls <file-name> /remove "GRUB/username"
+
+			reset --> icacls <file-name> /reset
+
+			pers --> F, R, W, x
+
+			example --> 
+
+				set full control to config file --> icacls config /grant "$(whoami):F"
+
+
 memory -->
 
 	memory sizes -->

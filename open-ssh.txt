@@ -37,4 +37,16 @@ Windows -->
 					#       AuthorizedKeysFile __PROGRAMDATA__/ssh/administrators_authorized_keys
 
 		Restart-Service sshd
+	
+	disable --> 
+		Stop-Service -Name sshd
+		Set-Service -Name sshd -StartupType Disabled
+
+
+
+
+
+
+
+
 
