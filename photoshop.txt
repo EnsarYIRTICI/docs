@@ -1,22 +1,30 @@
-fırça --> B
-renk değişimi --> X
+ekran -->
+	boyutu --> SPACE + CTRL + DRAG
 
-renkleri tersine çevir --> CTRL + I
+fırça --> 
+	kullan --> B
+	boyut --> ALT + RIGHT CLICK + DRAG
 
-taşıma aracı --> V
-işaretleme aracı --> M
+renk --> 
+	tersine çevir --> CTRL + I
 
-seçim kaldırma --> CTRL + D
+seçim -->
+	kaldırma --> CTRL + D
 
-seçileni farklı katmana kopyala --> CTRL + J
+katman --> 	
+	yeni katman --> SHIFT + ALT + CTRL + N
+	seçimi farklı katmana kopyala --> CTRL + J
+	maske --> SHIFT + CLICK
 
-yeni katman --> SHIFT + ALT + CTRL + N
-katman maskesi --> SHIFT + CLICK
-	
-fırça boyut --> ALT + RIGHT CLICK + DRAG
-ekran boyutu --> SPACE + CTRL + DRAG
+nesne -->
+	boyut --> CTRL + T
 
-nesne Boyutu --> CTRL + T
+taşıma --> 
+	kullan --> V
+
+işaretleme -->
+	kullan --> M
+
 
 
 
