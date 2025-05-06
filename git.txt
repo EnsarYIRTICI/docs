@@ -22,11 +22,10 @@ remote -->
 
 
 
-ignore edilmişlerin takibini durdur --> git rm -r --cached .
+tüm takibi durdur --> git rm -r --cached .
 
 
-
-linux -->
+github -->
 	 login -->
 		sudo apt update
 		sudo apt install gh

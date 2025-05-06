@@ -77,15 +77,22 @@ service -->
 
 	list --> Get-Service
 
-	arg --> 
-		--> Get-Service -Name W32Time
-		--> Get-Service -Displayname "Windows Time"
+		arg --> 
+			--> Get-Service -Name W32Time
+			--> Get-Service -Displayname "Windows Time"
 
-	like --> 
-		--> Get-Service | Where-Object { $_.Name -like "*sql*" }
-		--> Get-Service | Where-Object { $_.DisplayName -like "*sql*" }
+		like --> 
+			--> Get-Service | Where-Object { $_.Name -like "*sql*" }
+			--> Get-Service | Where-Object { $_.DisplayName -like "*sql*" }
 
+	stop --> 
+		arg --> Stop-Service -Name "sshd"
 
+	disable -->
+		arg --> Set-Service -Name sshd -StartupType Disabled
+
+	remove --> 
+		arg --> Remove-Service -Name "sshd"
 
 
 

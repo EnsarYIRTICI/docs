@@ -1,0 +1,65 @@
+install --> 
+
+	sudo apt update
+	sudo apt install bind9 bind9utils bind9-doc -y
+
+
+zone -->
+
+	config --> 
+
+		path --> /etc/bind/named.conf.local 
+		ex --> 
+			zone "ornekdomain.com" {
+   				type master;
+    				file "/etc/bind/zones/db.ornekdomain.com";
+			};
+
+
+	zone files -->
+
+		setup --> sudo mkdir /etc/bind/zones
+		
+
+	create --> 
+
+		sudo micro /etc/bind/zones/db.ornekdomain.com
+
+		$TTL    604800
+		@       IN      SOA     ns1.ornekdomain.com. admin.ornekdomain.com. (
+                             	3         ; Serial
+                        	604800         ; Refresh
+                         	86400         ; Retry
+                       		2419200         ; Expire
+                         	604800 )       ; Negative Cache TTL
+		;
+		@       IN      NS      ns1.ornekdomain.com.
+		@       IN      A       192.0.2.1
+		ns1     IN      A       192.0.2.1
+		www     IN      A       192.0.2.1
+
+	update -->
+
+		create ddns-key --> dnssec-keygen -a HMAC-SHA256 -b 256 -n HOST ddns-key
+
+		nsupdate -k /etc/bind/ddns.key -->
+
+			server 127.0.0.1
+			zone msi.yirtici
+			update add test.msi.yirtici. 3600 A 192.168.1.123
+			send
+
+
+	test -->
+
+		sudo named-checkconf
+		sudo named-checkzone ornekdomain.com /etc/bind/zones/db.ornekdomain.com
+
+
+restart --> 
+
+	sudo systemctl restart bind9
+
+
+
+

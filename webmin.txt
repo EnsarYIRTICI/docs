@@ -1,0 +1,18 @@
+install -->
+	sudo apt install wget gnupg2 software-properties-common apt-transport-https
+	wget -qO - http://www.webmin.com/jcameron-key.asc | sudo tee /etc/apt/trusted.gpg.d/webmin.asc
+	echo "deb http://download.webmin.com/download/repository sarge contrib" | sudo tee /etc/apt/sources.list.d/webmin.list
+	
+	sudo apt update
+	sudo apt install webmin
+
+
+config -->
+	sudo micro /etc/webmin/config
+	sudo micro /etc/webmin/miniserv.conf
+		
+		referers=hostinger.yirtici
+
+
+restart --> 
+	sudo systemctl restart webmin

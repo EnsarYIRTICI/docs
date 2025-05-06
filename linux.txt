@@ -1,6 +1,7 @@
 system -->
 	version --> uname -a
-	kod name --> lsb_release -c
+	code name --> lsb_release -c
+	machine name --> sudo hostnamectl set-hostname new-hostname
 
 
 grub -->
@@ -68,6 +69,11 @@ security -->
 
 	netstat --> sudo netstat -tuln
 
+	dns -->
+		sudo micro /etc/resolv.conf
+
+			nameserver 8.8.8.8
+			nameserver 8.8.4.4
 
 	firewall -->
 
@@ -136,6 +142,21 @@ service -->
 	process -->
 		list --> ps aux
 
+	systemd -->
+
+		systemctl -->
+
+			list -->
+
+				systemctl list-units --type=service
+				systemctl list-units --type=service --state=running
+
+
+		journalctl --> 
+			
+			error list --> journalctl -xe
+
+
 	screen --> 
 		list --> screen -ls
 
@@ -146,15 +167,6 @@ service -->
 		leave --> CTRL + A + D
 
 		delete -->  screen -X -S <PID> quit
-
-
-	systemctl -->
-
-		list -->
-
-			systemctl list-units --type=service
-			systemctl list-units --type=service --state=running
-
 
 
 disk -->

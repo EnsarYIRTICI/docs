@@ -1,0 +1,57 @@
+install -->
+
+	curl -O https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh
+	chmod +x openvpn-install.sh
+	./openvpn-install.sh
+
+
+client -->
+
+	create -->
+
+		cd /etc/openvpn/easy-rsa
+		source vars
+		sudo ./easyrsa build-client-full client1 nopass
+
+	create ovpn -->
+
+		sudo bash
+
+		SERVER_IP="147.93.122.169"
+
+		cat > ~/ovpn/msi.ovpn <<EOF
+		client
+		dev tun
+		proto udp
+		remote $SERVER_IP 1194
+		resolv-retry infinite
+		nobind
+		persist-key
+		persist-tun
+		remote-cert-tls server
+		cipher AES-256-CBC
+		auth SHA256
+		verb 3
+
+		<ca>
+		$(cat /etc/openvpn/ca.crt)
+		</ca>
+
+		<cert>
+		$(cat /etc/openvpn/easy-rsa/pki/issued/msi.crt)
+		</cert>
+
+		<key>
+		$(cat /etc/openvpn/easy-rsa/pki/private/msi.key)
+		</key>
+
+		<tls-crypt>
+		$(cat /etc/openvpn/tls-crypt.key)
+		</tls-crypt>
+		EOF
+
+
+	get opvn -->
+
+		scp root@147.93.122.169:/home/ubuntu/msi.ovpn /mnt/c/Users/ensar/MyFiles/MySecret/openvpn/msi.ovpn
+

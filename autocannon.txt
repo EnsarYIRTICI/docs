@@ -1,0 +1,5 @@
+install -->
+	npm install autocannon -g
+
+request -->
+	autocannon -c 100 -d 30 http://localhost:3000/

@@ -9,6 +9,7 @@ renk -->
 	tersine çevir --> CTRL + I
 
 seçim -->
+	hızlı seç --> L
 	kaldırma --> CTRL + D
 
 katman --> 	
