@@ -58,16 +58,16 @@ shell -->
 
 
 security -->
-
 	
 	user -->
-
 		me --> whoami
 
 		create user --> sudo adduser <user-name>
 		change user on terminal --> sudo -u <user> -s
 
-	netstat --> sudo netstat -tuln
+	netstat --> 
+		all --> sudo netstat -tuln
+		grep --> sudo netstat -tuln | grep ':80'
 
 	dns -->
 		sudo micro /etc/resolv.conf
@@ -89,7 +89,6 @@ security -->
 		kullan --> sudo ifconfig ethX up
 		oluştur --> sudo ip link add ethY type bridge
 		sil --> sudo ip link delete ethY
-
 
 
 
