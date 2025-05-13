@@ -1,0 +1,10 @@
+system -->
+	machine -->
+		change name --> sudo vi /etc/rc.conf
+				:wq!
+		
+
+package -->
+	install --> pkg install <name>
+
+	fav --> pkg install sudo bash vim micro nano screen tmux git gh npm node nginx

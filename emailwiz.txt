@@ -1,10 +1,15 @@
-emailwiz -->
-	download --> curl -LO lukesmith.xyz/emailwiz.sh
-	setup --> bash emailwiz.sh
-	dns settings --> cat ~/dns_emailwizard
+install -->
+	curl -LO lukesmith.xyz/emailwiz.sh
+	chmod +x emailwiz.sh
+	./emailwiz.sh
 
 
 users --> cut -d: -f1 /etc/passwd
+
+
+fail2ban -->
+
+	config --> nano /etc/fail2ban/jail.conf
 
 
 postfix -->
@@ -19,17 +24,36 @@ postfix -->
 		sudo micro /etc/postfix/main.cf
 
 
-dns status --> dig -x <ip-address>
+
+dns -->
+
+	settings --> cat ~/dns_emailwizard
+
+	status --> dig -x <ip-address
 
 
-send test mail--> echo "Bu bir test emailidir" | mail -s "Test Email" -r deneme@blackcatverse.com ensaryrtc@gmail.com
+test -->
+
+	send test mail--> echo "Bu bir test emailidir" | mail -s "Test Email" -r deneme@blackcatverse.com ensaryrtc@gmail.com
 
 
-windows port proxy -->
-	netsh interface portproxy add v4tov4 listenport=25 listenaddress=0.0.0.0 connectport=25 connectaddress=172.26.7.214
- 	netsh interface portproxy add v4tov4 listenport=465 listenaddress=0.0.0.0 connectport=465 connectaddress=172.26.7.214
- 	netsh interface portproxy add v4tov4 listenport=587 listenaddress=0.0.0.0 connectport=587 connectaddress=172.26.7.214
- 	netsh interface portproxy add v4tov4 listenport=110 listenaddress=0.0.0.0 connectport=110 connectaddress=172.26.7.214
- 	netsh interface portproxy add v4tov4 listenport=995 listenaddress=0.0.0.0 connectport=995 connectaddress=172.26.7.214
- 	netsh interface portproxy add v4tov4 listenport=143 listenaddress=0.0.0.0 connectport=143 connectaddress=172.26.7.214
- 	netsh interface portproxy add v4tov4 listenport=993 listenaddress=0.0.0.0 connectport=993 connectaddress=172.26.7.214
+network -->
+
+	ufw -->
+		sudo ufw allow 143/tcp
+		sudo ufw allow 993/tcp
+		sudo ufw allow 110/tcp
+		sudo ufw allow 995/tcp
+		sudo ufw allow 25/tcp
+		sudo ufw allow 465/tcp
+		sudo ufw allow 587/tcp
+
+	windows port proxy -->
+		netsh interface portproxy add v4tov4 listenport=25 listenaddress=0.0.0.0 connectport=25 connectaddress=172.26.7.214
+ 		netsh interface portproxy add v4tov4 listenport=465 listenaddress=0.0.0.0 connectport=465 connectaddress=172.26.7.214
+ 		netsh interface portproxy add v4tov4 listenport=587 listenaddress=0.0.0.0 connectport=587 connectaddress=172.26.7.214
+ 		netsh interface portproxy add v4tov4 listenport=110 listenaddress=0.0.0.0 connectport=110 connectaddress=172.26.7.214
+ 		netsh interface portproxy add v4tov4 listenport=995 listenaddress=0.0.0.0 connectport=995 connectaddress=172.26.7.214
+ 		netsh interface portproxy add v4tov4 listenport=143 listenaddress=0.0.0.0 connectport=143 connectaddress=172.26.7.214
+ 		netsh interface portproxy add v4tov4 listenport=993 listenaddress=0.0.0.0 connectport=993 connectaddress=172.26.7.214
+

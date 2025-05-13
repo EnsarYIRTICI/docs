@@ -6,6 +6,23 @@ system -->
 	info --> docker system df
 	clean --> docker system prune
 
+	deamon -->
+		config --> 
+			lin --> sudo nano /etc/docker/daemon.json
+				{
+    					"insecure-registries" : ["hub.msi.ensar"],
+    					"dns": ["127.0.0.1", "8.8.8.8"],
+   					 "iptables": false
+				}
+
+			win --> micro ~\.docker\drenajsan
+				{
+  					"experimental": true,
+  					"insecure-registries": [
+   						 "hub.msi.ensar"
+  					]
+				}
+
 
 container -->
 

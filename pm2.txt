@@ -1,20 +1,23 @@
-install --> npm install pm2 -g
+install --> 
+	sudo apt update
+	sudo apt install npm nodejs
+	sudo npm install pm2 -g
 
-list --> pm2 list
+list --> sudo pm2 list
 
-start --> pm2 start ecosystem.config.cjs
-stop --> pm2 stop my-express-app
-restart --> pm2 restart my-express-app
+start --> sudo pm2 start ecosystem.config.cjs
+stop --> sudo pm2 stop my-express-app
+restart --> sudo pm2 restart my-express-app
 
-delete --> pm2 delete my-express-app
+delete --> sudo pm2 delete my-express-app
 
-startup --> pm2 startup
+startup --> sudo pm2 startup
 
 save -->
-	pm2 save
-	pm2 save --force
+	sudo pm2 save
+	sudo pm2 save --force
 
-logs --> pm2 logs
+logs --> sudo pm2 logs
 
 
 

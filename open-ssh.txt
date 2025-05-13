@@ -10,6 +10,12 @@ Linux -->
 
 	restart --> sudo systemctl restart ssh
 
+
+BSD -->
+	config --> sudo vi /etc/ssh/sshd_config
+
+			PermitRootLogin yes
+
 Windows -->
 
 	install --> 
@@ -45,7 +51,10 @@ Windows -->
 					# Match Group administrators
 					#        AuthorizedKeysFile __PROGRAMDATA__/ssh/administrators_authorized_keys
 
-		Restart-Service sshd
+		
+
+	restart --> Restart-Service sshd
+
 	
 	disable --> 
 
@@ -54,6 +63,9 @@ Windows -->
 
 
 
+	enable -->
+		Set-Service -Name sshd -StartupType Automatic
+		Start-Service -Name sshd
 
 
 

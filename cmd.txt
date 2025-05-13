@@ -133,10 +133,10 @@ security -->
 				netsh interface portproxy show all
 
 			create --> 
-				netsh interface portproxy add v4tov4 listenport=<Port> listenaddress=<IP Address> connectport=<WSL Port> connectaddress=<WSL IPAddress>
+				netsh interface portproxy add v4tov4 listenport=<Port> listenaddress=0.0.0.0 connectport=<WSL-Port> connectaddress=<WSL-IP>
 
 			delete -->
-				netsh interface portproxy delete v4tov4 listenaddress=<IP Address> listenport=<Port>
+				netsh interface portproxy delete v4tov4 listenaddress=0.0.0.0 listenport=<Port>
 
 			reset -->
 				netsh interface portproxy reset

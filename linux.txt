@@ -1,7 +1,9 @@
 system -->
 	version --> uname -a
-	code name --> lsb_release -c
-	machine name --> sudo hostnamectl set-hostname new-hostname
+	code --> lsb_release -c
+
+	machine -->
+		change name --> sudo hostnamectl set-hostname new-hostname
 
 
 grub -->
@@ -69,17 +71,19 @@ security -->
 		all --> sudo netstat -tuln
 		grep --> sudo netstat -tuln | grep ':80'
 
+	firewall -->
+
+		status --> sudo ufw status
+		change --> sudo ufw enable/disable
+
+		add rule --> sudo ufw allow <port>/<protocol>
+		delete rule --> sudo ufw delete allow <port>
+	
 	dns -->
 		sudo micro /etc/resolv.conf
 
 			nameserver 8.8.8.8
 			nameserver 8.8.4.4
-
-	firewall -->
-
-		status --> sudo ufw status
-		change --> sudo ufw enable/disable
-	
 	
 	interface -->
 
@@ -90,6 +94,20 @@ security -->
 		oluştur --> sudo ip link add ethY type bridge
 		sil --> sudo ip link delete ethY
 
+	app-armor -->
+
+		disable --> 
+			sudo systemctl stop apparmor
+			sudo systemctl disable apparmor
+
+			sudo sed -i 's/^GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="apparmor=0"/' /etc/default/grub && sudo update-grub && sudo reboot
+
+		enable --> 
+
+			sudo systemctl start apparmor
+			sudo systemctl enable apparmor
+	
+			sudo sed -i 's/^GRUB_CMDLINE_LINUX="apparmor=0"/GRUB_CMDLINE_LINUX=""/' /etc/default/grub && sudo update-grub && sudo reboot
 
 
 file -->
