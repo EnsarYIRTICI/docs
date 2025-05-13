@@ -29,48 +29,37 @@ package -->
 security -->
 
 	administrator --> 
+		verification -->
+			gui --> Start-Process wt -Verb runAs
+			password --> Start-Process -FilePath "wt" -Credential administrator
 
-		gui verification --> Start-Process wt -Verb runAs
-		password verification --> 
-			ware-1 --> Start-Process -FilePath "wt" -Credential administrator
-			
-			ware-2 -->
-				$Username = "Administrator"
-				$Password = ConvertTo-SecureString "SifreniziBurayaYazın" -AsPlainText -Force
-				$Cred = New-Object System.Management.Automation.PSCredential($Username, $Password)
-				Start-Process -FilePath "wt.exe" -Credential $Cred
-
-		enable --> Enable-LocalUser -Name "Administrator"
-		disable --> Disable-LocalUser -Name "Administrator"
+		status -->
+			enable --> Enable-LocalUser -Name "Administrator"
+			disable --> Disable-LocalUser -Name "Administrator"
 
 		change password -->
 			$Password = Read-Host "Yeni şifreyi girin" -AsSecureString
 			Set-LocalUser -Name "Administrator" -Password $Password
 
 
-
-	firewall -->
-		disable --> Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
-
-
-
 	user -->
-
-		init ps 7.* --> Import-Module microsoft.powershell.localaccounts -UseWindowsPowerShell
-		init ps 5.* --> Import-Module microsoft.powershell.localaccounts
+		init -->
+			ps 7.* --> Import-Module microsoft.powershell.localaccounts -UseWindowsPowerShell
+			ps 5.* --> Import-Module microsoft.powershell.localaccounts
 
 		create -->
-
-			New-LocalUser -Name "misafir" -Password (ConvertTo-SecureString "1453" -AsPlainText -Force) -FullName "Misafir" -Description "A guest user account"
+			$password = ConvertTo-SecureString "1453" -AsPlainText -Force
+			New-LocalUser -Name "misafir" -Password $password -FullName "Misafir" -Description "A guest user account"
 
 		add to group -->
-
 			Add-LocalGroupMember -Group "Users" -Member "misafir"
 
 		delete -->
-			
 			Remove-LocalUser -Name "misafir"
 
+
+	firewall -->
+		disable --> Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 
 
 service -->
