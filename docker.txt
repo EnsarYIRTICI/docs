@@ -24,6 +24,15 @@ system -->
 				}
 
 
+copy -->
+	os to docker -->
+		docker cp <path> <container_id>:<path>
+
+	docker to os -->
+		docker cp <container_id>:<path> <path>
+
+
+
 container -->
 
 	run --> docker run [args] <image-name> 
@@ -56,34 +65,39 @@ container -->
 	info --> docker inspect <container-name-or-id>
 
 	start --> docker start <container-name-or-id> 
-	stop --> docker stop <container-name-or-id> 
+	stop --> docker stop <container-name-or-id>
+	restart --> docker restart <container-name-or-id>  
 
 	del --> docker rm <container-name-or-id> 
-
 	clear --> docker container prune
 
 
-copy -->
-	os to docker -->
-		docker cp <path> <container_id>:<path>
 
-	docker to os -->
-		docker cp <container_id>:<path> <path>
+container to image --> docker commit <container-name-or-id> localhost:12452/myproject/myimage:latest
 
 
 image -->
 
-	list --> docker images	
+	ls --> docker images	
 
-	indir --> docker pull <image_name>
+	pull --> docker pull <image_name>
 	build --> docker build --build-arg NODE_ENV=development -t <image-name> .
-	commit --> docker commit <container-name-or-id> <image-name>
-
-	tag --> docker tag <my-old-image> <my-new-image>
+	change tag --> docker tag <my-old-image> <my-new-image>
 
 	del --> docker rmi <image-name-or-id> 
-
 	clear --> docker image prune
+
+
+
+
+registry -->
+
+	login -->
+		docker login localhost:12452
+
+	push -->
+		docker build -t localhost:12452/myproject/myapp:latest .
+		docker push myregistry.example.com/myproject/myapp:latest
 
 
 

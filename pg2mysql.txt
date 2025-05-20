@@ -1,0 +1,9 @@
+install --> 
+	wget https://raw.githubusercontent.com/dolthub/pg2mysql/main/pg2mysql.pl
+	chmod +x pg2mysql.pl
+
+	sudo apt update
+	sudo apt install perl
+
+
+migrate --> ./pg2mysql.pl < /path/to/postgres_dump.sql > /path/to/mysql_dump.sql

@@ -1,0 +1,76 @@
+setup --> 
+	Set-ExecutionPolicy Bypass -Scope Process -Force; 
+	[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;
+	iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+
+chocolatey -->
+
+	source -->
+		ls --> choco source list
+
+		add nexus nuget source --> 
+
+				choco source add -n=nexusrepo `
+ 				 -s="http://localhost:8081/repository/chocolatey-hosted/" `
+ 				 --user=admin `
+ 				 --password=YourPassword `
+ 				 --priority=10
+
+	search -->
+
+		choco search "mypackage" --source=nexusrepo
+
+
+	install -->
+
+		choco install mypackage --version=1.0.0.0 --source=nexusrepo -y
+
+
+	new -->
+		choco new <package-name>
+		
+
+
+	pack --> 
+		cd choco mypackage
+
+		micro mypackage.nuspec -->
+
+					<?xml version="1.0" encoding="utf-8"?>
+					<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+ 						<metadata>
+    							<id>my-package</id>
+    							<version>1.0.0.0</version>
+    							<title>MyPackage (Install)</title>
+    							<authors>ensar</authors>
+    							<projectUrl>https://mypackage/</projectUrl>
+    							<tags>MyPackage</tags>
+    							<summary>MyPackage</summary>
+    							<description>Hello World</description>
+  						</metadata>
+ 						<files>
+    							<file src="tools\**" target="tools" />
+  						</files>
+					</package>
+
+		cd tools
+		cp C:\Users\ensar\Downloads\chrome\setup.exe .
+
+		micro chocolateyinstall.ps1 --> 
+
+				$ErrorActionPreference = 'Stop'
+
+				$toolsDir   = "$(Split-Path -Parent $MyInvocation.MyCommand.Definition)"
+				$exePath    = Join-Path $toolsDir 'setup.exe'
+
+				Start-Process -FilePath $exePath -ArgumentList '/S' -Wait -NoNewWindow
+		cd ..
+
+		choco pack
+		choco push mypackage.1.0.0.0.nupkg --source=http://localhost:8081/repository/chocolatey-hosted/ --api-key=anykey
+
+
+
+
+

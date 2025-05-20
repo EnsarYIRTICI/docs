@@ -1,0 +1,24 @@
+config --> sudo nano file.load
+
+	LOAD DATABASE
+        	FROM mysql://root:password@127.0.0.1:3306/database
+        	INTO postgresql://postgres:password@127.0.0.1:5432/database
+
+	INCLUDING ONLY TABLE NAMES MATCHING ~/^table_name$/
+
+	WITH include no drop,
+     		create tables,
+     		create indexes,
+     		reset sequences,
+     		batch rows = 5000,
+     		workers = 4,
+     		concurrency = 2
+
+	SET work_mem TO '64MB'
+	SET maintenance_work_mem TO '512MB';
+	
+
+start --> pgloader --dynamic-space-size 4096 file.load 
+
+
+drop --> docker exec -it container_name psql -U postgres -d database_name -c "DROP TABLE schema_name.\"table_name\" CASCADE;"

@@ -1,22 +1,9 @@
 package -->
 
 	chocolatey -->
-		
-		install chocolatey --> 
-					Set-ExecutionPolicy Bypass -Scope Process -Force; 
-					[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072;
-					iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 	
 		search --> choco search <package-name>
-
-		install --> 
-			example --> choco install <package-name> -y
-			example --> choco install pwsh -y
-	
-		version --> choco -v
-		locale packages --> choco list
-
-		update all --> choco upgrade all -y
+		install --> choco install <package-name> -y
 
 
 	winget -->
@@ -124,6 +111,28 @@ hyper-v -->
 
 
 
+registry -->
+	 psdrive -->
+		root ls --> Get-PSDrive | Where-Object {$_.Provider -like "*Registry*"}
+
+		add root --> 
+			New-PSDrive -Name HKCU -PSProvider Registry -Root HKEY_CURRENT_USER
+			New-PSDrive -Name HKLM -PSProvider Registry -Root HKEY_LOCAL_MACHINE
+			New-PSDrive -Name HKCR -PSProvider Registry -Root HKEY_CLASSES_ROOT
+			New-PSDrive -Name HKU -PSProvider Registry -Root HKEY_USERS
+			New-PSDrive -Name HKCC -PSProvider Registry -Root HKEY_CURRENT_CONFIG
+
+
+
+cert -->
+	ls --> Get-ChildItem Cert:\CurrentUser\My
+
+
+
+
+psdrive --> 
+	ls --> Get-PSDrive
+
 
 shell -->	
 
@@ -146,3 +155,5 @@ shell -->
 		create --> New-Item -Path $PROFILE -ItemType File -Force
 		edit --> code $PROFILE
 		confirm --> . $PROFILE
+
+

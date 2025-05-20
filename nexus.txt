@@ -1,0 +1,6 @@
+admin password --> cat C:\Users\ensar\MyFiles\MyPackageManager\nexus\admin.password
+
+
+
+
+
