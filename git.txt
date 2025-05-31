@@ -1,29 +1,31 @@
-oluştur -->
+init -->
 	git init
-	git remote add root https://github.com/EnsarYIRTICI/<repository-name>.git
+	git remote add origin https://github.com/EnsarYIRTICI/<repository-name>.git
 	git add .
 	git commit -m "first"
-	git push root head
+	git push origin master
 
 
-
-güncelle -->
+update -->
 	git add .
 	git commit -m "bugfix"
-	git push -u root head
+	git push origin master
 
 
-değişiklikleri çek --> git pull
+pull changes --> git pull
 
 
 remote -->
-	liste --> git remote -v
-	url değiştirme --> git remote set-url root https://github.com/EnsarYIRTICI/<repository-name>.git
+	ls --> git remote -v
+	add --> git remote add origin https://github.com/EnsarYIRTICI/<repository-name>.git
+	change --> git remote set-url origin https://github.com/EnsarYIRTICI/<repository-name>.git
 
 
+stop follow --> git rm -r --cached .
 
-tüm takibi durdur --> git rm -r --cached .
 
+config -->
+	small/large case --> git config core.ignorecase false
 
 github -->
 	 login -->

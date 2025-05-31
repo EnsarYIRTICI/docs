@@ -5,6 +5,8 @@ system -->
 	machine -->
 		change name --> sudo hostnamectl set-hostname new-hostname
 
+	env --> sudo micro /etc/environment
+
 
 grub -->
 
