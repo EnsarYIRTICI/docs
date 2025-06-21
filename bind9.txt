@@ -8,7 +8,8 @@ zone -->
 
 	config --> 
 
-		path --> /etc/bind/named.conf.local 
+		cat --> cat /etc/bind/named.conf.local 
+
 		ex --> 
 			zone "ornekdomain.com" {
    				type master;
@@ -18,6 +19,7 @@ zone -->
 
 	zone files -->
 
+		ls --> ls /etc/bind/zones
 		setup --> sudo mkdir /etc/bind/zones
 		
 
@@ -27,7 +29,7 @@ zone -->
 
 		$TTL    604800
 		@       IN      SOA     ns1.ornekdomain.com. admin.ornekdomain.com. (
-                             	3         ; Serial
+                             	1         ; Serial
                         	604800         ; Refresh
                          	86400         ; Retry
                        		2419200         ; Expire
@@ -40,20 +42,27 @@ zone -->
 
 	update -->
 
-		create ddns-key --> dnssec-keygen -a HMAC-SHA256 -b 256 -n HOST ddns-key
+		include ddns --> echo 'include "/etc/bind/ddns.key";' | sudo tee -a /etc/bind/named.conf.local > /dev/null
+
+		create -->
+
+			ddns-key --> tsig-keygen ddns-key | sudo tee /etc/bind/ddns.key > /dev/null		
+
+			bind --> sudo sed -i '/zone "test.msi" {/,/};/s|};|    allow-update { key "ddns-key"; };\n};|' /etc/bind/named.conf.local
+	
 
 		nsupdate -k /etc/bind/ddns.key -->
 
 			server 127.0.0.1
-			zone msi.yirtici
-			update add test.msi.yirtici. 3600 A 192.168.1.123
+			zone test.msi
+			update add hub.test.msi. 3600 A 192.168.1.123
 			send
 
 
 	test -->
 
 		sudo named-checkconf
-		sudo named-checkzone ornekdomain.com /etc/bind/zones/db.ornekdomain.com
+		sudo named-checkzone test.msi /etc/bind/zones/db.test.msi
 
 
 restart --> 

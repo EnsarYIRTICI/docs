@@ -1,0 +1,11 @@
+start --> 
+	cd /mnt/c/users/ensar/repo/python
+	git clone https://github.com/attardi/wikiextractor.git
+	cd wikiextractor
+
+	python3.10 -m wikiextractor.WikiExtractor \
+	/mnt/c/Users/ensar/Downloads/chrome/trwiki-20250601-pages-articles-multistream.xml.bz2 \
+	-o /mnt/c/Users/ensar/Desktop/trwiki-20250601-pages-articles-multistream \
+	--json \
+	--no-templates \
+	--processes 4

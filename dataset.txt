@@ -1,0 +1,4 @@
+NLP Görevleri -->
+	msmarco --> https://microsoft.github.io/msmarco/
+	Natural Questions --> https://ai.google.com/research/NaturalQuestions/download
+	SQuAD2.0 --> https://rajpurkar.github.io/SQuAD-explorer/

@@ -1,13 +1,6 @@
-service --> 
+setup -->
 
-	task --> tasklist | findstr <PID>
-
-	net -->
-		start --> net start <service-name>
-		stop --> net stop <service-name>
-
-	sc -->
-		delete --> sc delete <service-name>
+	local auth -->  SHIFT + F10 --> start ms-cxh:localonly
 
 
 boot -->
@@ -29,6 +22,19 @@ boot -->
 	firmware list --> bcdedit /enum firmware
 
 	delete --> bcdedit /delete {14cb0bbf-0cb9-11f0-a64d-806e6f6e6963}
+
+
+service --> 
+
+	task --> tasklist | findstr <PID>
+
+	net -->
+		start --> net start <service-name>
+		stop --> net stop <service-name>
+
+	sc -->
+		delete --> sc delete <service-name>
+
 
 
 file --> 

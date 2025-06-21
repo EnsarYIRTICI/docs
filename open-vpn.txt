@@ -11,11 +11,9 @@ client -->
 
 		cd /etc/openvpn/easy-rsa
 		source vars
-		sudo ./easyrsa build-client-full client1 nopass
+		./easyrsa build-client-full client1 nopass
 
 	create ovpn -->
-
-		sudo bash
 
 		SERVER_IP="147.93.122.169"
 
@@ -53,5 +51,5 @@ client -->
 
 	get opvn -->
 
-		scp root@147.93.122.169:/home/ubuntu/msi.ovpn /mnt/c/Users/ensar/MyFiles/MySecret/openvpn/msi.ovpn
+		scp root@147.93.122.169:/root/secret/ovpn/msi.ovpn C:/Users/ensar/MyFiles/MySecret/openvpn/tinger/tinger-msi.ovpn
 
