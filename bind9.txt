@@ -1,13 +1,10 @@
 install --> 
-
 	sudo apt update
 	sudo apt install bind9 bind9utils bind9-doc -y
 
 
 zone -->
-
 	config --> 
-
 		cat --> cat /etc/bind/named.conf.local 
 
 		ex --> 
@@ -18,13 +15,11 @@ zone -->
 
 
 	zone files -->
-
 		ls --> ls /etc/bind/zones
 		setup --> sudo mkdir /etc/bind/zones
 		
 
 	create --> 
-
 		sudo micro /etc/bind/zones/db.ornekdomain.com
 
 		$TTL    604800
@@ -40,17 +35,16 @@ zone -->
 		ns1     IN      A       192.0.2.1
 		www     IN      A       192.0.2.1
 
+
+	include ddns --> 
+			tsig-keygen ddns-key | sudo tee /etc/bind/ddns.key > /dev/null
+			echo 'include "/etc/bind/ddns.key";' | sudo tee -a /etc/bind/named.conf.local > /dev/null
+
+
+	ddns to zone --> sudo sed -i '/zone "test.msi" {/,/};/s|};|    allow-update { key "ddns-key"; };\n};|' /etc/bind/named.conf.local
+
+
 	update -->
-
-		include ddns --> echo 'include "/etc/bind/ddns.key";' | sudo tee -a /etc/bind/named.conf.local > /dev/null
-
-		create -->
-
-			ddns-key --> tsig-keygen ddns-key | sudo tee /etc/bind/ddns.key > /dev/null		
-
-			bind --> sudo sed -i '/zone "test.msi" {/,/};/s|};|    allow-update { key "ddns-key"; };\n};|' /etc/bind/named.conf.local
-	
-
 		nsupdate -k /etc/bind/ddns.key -->
 
 			server 127.0.0.1
@@ -60,13 +54,11 @@ zone -->
 
 
 	test -->
-
 		sudo named-checkconf
 		sudo named-checkzone test.msi /etc/bind/zones/db.test.msi
 
 
 restart --> 
-
 	sudo systemctl restart bind9
 
 

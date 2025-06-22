@@ -11,7 +11,9 @@ config -->
 	sudo micro /etc/webmin/config
 	sudo micro /etc/webmin/miniserv.conf
 		
-		referers=hostinger.yirtici
+		referers=min.tinger
+
+change root password --> sudo /usr/share/webmin/changepass.pl /etc/webmin root NewPassword
 
 
 restart --> 

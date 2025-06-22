@@ -10,16 +10,16 @@ system -->
 		config --> 
 			lin --> sudo nano /etc/docker/daemon.json
 				{
-    					"insecure-registries" : ["hub.msi.ensar"],
+    					"insecure-registries" : ["registry.msi"],
     					"dns": ["127.0.0.1", "8.8.8.8"],
-   					 "iptables": false
+   					"iptables": false
 				}
 
-			win --> micro ~\.docker\drenajsan
+			win --> micro ~\.docker\daemon.json
 				{
   					"experimental": true,
   					"insecure-registries": [
-   						 "hub.msi.ensar"
+   						 "registry.msi"
   					]
 				}
 
