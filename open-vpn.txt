@@ -4,52 +4,59 @@ install -->
 	chmod +x openvpn-install.sh
 	./openvpn-install.sh
 
-
 client -->
-
 	create -->
 
-		cd /etc/openvpn/easy-rsa
-		source vars
-		./easyrsa build-client-full client1 nopass
+		cert -->
+			cd /etc/openvpn/easy-rsa
+			./easyrsa build-client-full client1 nopass
 
-	create ovpn -->
+		ovpn -->
+			SERVER_IP="147.93.122.169"
 
-		SERVER_IP="147.93.122.169"
+			cat > ~/secret/ovpn/client1.ovpn <<EOF
+			client1
+			dev tun
+			proto udp
+			remote $SERVER_IP 1194
+			resolv-retry infinite
+			nobind
+			persist-key
+			persist-tun
+			remote-cert-tls server
+			cipher AES-256-CBC
+			auth SHA256
+			verb 3
 
-		cat > ~/ovpn/msi.ovpn <<EOF
-		client
-		dev tun
-		proto udp
-		remote $SERVER_IP 1194
-		resolv-retry infinite
-		nobind
-		persist-key
-		persist-tun
-		remote-cert-tls server
-		cipher AES-256-CBC
-		auth SHA256
-		verb 3
+			<ca>
+			$(cat /etc/openvpn/ca.crt)
+			</ca>
 
-		<ca>
-		$(cat /etc/openvpn/ca.crt)
-		</ca>
+			<cert>
+			$(cat /etc/openvpn/easy-rsa/pki/issued/client1.crt)
+			</cert>
 
-		<cert>
-		$(cat /etc/openvpn/easy-rsa/pki/issued/msi.crt)
-		</cert>
+			<key>
+			$(cat /etc/openvpn/easy-rsa/pki/private/client1.key)
+			</key>
 
-		<key>
-		$(cat /etc/openvpn/easy-rsa/pki/private/msi.key)
-		</key>
-
-		<tls-crypt>
-		$(cat /etc/openvpn/tls-crypt.key)
-		</tls-crypt>
-		EOF
+			<tls-crypt>
+			$(cat /etc/openvpn/tls-crypt.key)
+			</tls-crypt>
+			EOF
 
 
-	get opvn -->
+	static-ip --> echo "ifconfig-push 10.8.0.10 255.255.255.0" | sudo tee /etc/openvpn/ccd/client1
 
-		scp root@147.93.122.169:/root/secret/ovpn/msi.ovpn C:/Users/ensar/MyFiles/MySecret/openvpn/tinger/tinger-msi.ovpn
+
+	download -->
+		scp root@147.93.122.169:/root/secret/ovpn/client1.ovpn ~/client1.ovpn
+
+
+	connect --> 
+		cp ~/client1.ovpn /etc/openvpn/client/client1.conf
+		systemctl restart openvpn-client@lin
+
+
+
 

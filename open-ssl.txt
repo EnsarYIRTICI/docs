@@ -1,18 +1,23 @@
-create pem --> 
-	key --> openssl genpkey -algorithm RSA -out key.pem
-	pem with key --> openssl req -new -x509 -key key.pem -out cert.pem -days 365
+create pem --> openssl req -new -x509 -newkey rsa:2048 -nodes -keyout key.pem -out cert.pem -days 3650
 
 
 create crt --> 
 
 	lin -->
 		read -p "Sertifika adı girin: " certname && \
-		openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+		openssl req -x509 -nodes -days 3650 
+		-newkey rsa:2048 \
 		-keyout "/etc/ssl/private/${certname}.key" \
 		-out "/etc/ssl/certs/${certname}.crt"
 
 	win --> 
-		$certName=Read-Host "Sertifika adı girin"; $certPath="C:\Users\ensar\MyFiles\MyCertificate"; New-Item -Path $certPath -ItemType Directory -Force | Out-Null; openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout "$certPath\$certName.key" -out "$certPath\$certName.crt"
+		$certName=Read-Host "Sertifika adı girin"; `
+		$certPath="C:\Users\ensar\MyFiles\MyCertificate"; `
+		New-Item -Path $certPath -ItemType Directory -Force | Out-Null; `
+		openssl req -x509 -nodes -days 3650 `
+    		-newkey rsa:2048 `
+    		-keyout "$certPath\$certName.key" `
+    		-out "$certPath\$certName.crt"
 
 
 download --> scp root@192.168.1.160:/etc/ssl/certs/selfsigned.crt C:/Users/ensar/Desktop/selfsigned.crt

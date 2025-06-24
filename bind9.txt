@@ -37,11 +37,11 @@ zone -->
 
 
 	include ddns --> 
-			tsig-keygen ddns-key | sudo tee /etc/bind/ddns.key > /dev/null
+			tsig-keygen ddns-key | sudo tee -a /etc/bind/ddns.key > /dev/null
 			echo 'include "/etc/bind/ddns.key";' | sudo tee -a /etc/bind/named.conf.local > /dev/null
 
 
-	ddns to zone --> sudo sed -i '/zone "test.msi" {/,/};/s|};|    allow-update { key "ddns-key"; };\n};|' /etc/bind/named.conf.local
+	ddns to zone --> sudo sed -i '/zone "test.msi" {/,/};/s|};| allow-update { key "ddns-key"; };\n};|' /etc/bind/named.conf.local
 
 
 	update -->
