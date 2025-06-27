@@ -3,26 +3,6 @@ setup -->
 	local auth -->  SHIFT + F10 --> start ms-cxh:localonly
 
 
-boot -->
-
-	list --> bcdedit
-	enable --> bcdedit /set {bootmgr} displaybootmenu yes
-	default --> bcdedit /default {current}
-
-	repair manager --> 
-
-		diskpart
-		sel disk 0
-		sel vol 2
-		assign letter=v
-		format v: /fs:fat32
-		bcdboot c:\windows /s v: /f UEFI
-
-
-	firmware list --> bcdedit /enum firmware
-
-	delete --> bcdedit /delete {14cb0bbf-0cb9-11f0-a64d-806e6f6e6963}
-
 
 service --> 
 
@@ -160,5 +140,24 @@ hardware -->
 
 
 
+boot -->
+
+	list --> bcdedit
+	enable --> bcdedit /set {bootmgr} displaybootmenu yes
+	default --> bcdedit /default {current}
+
+	repair manager --> 
+
+		diskpart
+		sel disk 0
+		sel vol 2
+		assign letter=v
+		format v: /fs:fat32
+		bcdboot c:\windows /s v: /f UEFI
+
+
+	firmware list --> bcdedit /enum firmware
+
+	delete --> bcdedit /delete {14cb0bbf-0cb9-11f0-a64d-806e6f6e6963}
 
 

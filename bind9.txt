@@ -37,7 +37,7 @@ zone -->
 
 
 	include ddns --> 
-			tsig-keygen ddns-key | sudo tee -a /etc/bind/ddns.key > /dev/null
+			tsig-keygen ddns | sudo tee -a /etc/bind/ddns.key > /dev/null
 			echo 'include "/etc/bind/ddns.key";' | sudo tee -a /etc/bind/named.conf.local > /dev/null
 
 

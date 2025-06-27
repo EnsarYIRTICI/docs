@@ -2,44 +2,8 @@ system -->
 	version --> uname -a
 	code --> lsb_release -c
 
-	machine -->
-		change name --> sudo hostnamectl set-hostname new-hostname
-
-	env --> sudo micro /etc/environment
-
-
-grub -->
-
-	boot list --> sudo grep "menuentry" /boot/grub/grub.cfg
-
-	install --> sudo grub-install
-	update --> sudo update-grub
-
-	settings --> sudo micro /etc/default/grub
-
-		GRUB_DEFAULT="Windows Boot Manager (on /dev/nvme0n1p1)"
-
-
-	iso repair -->
-
-		sudo su -
-		fdisk -l
-		mount /dev/nvme0n1p5 /mnt
-		mount /dev/nvme0n1p1 /mnt/boot/efi
-
-		for i in /dev /dev/pts /proc /sys /run; do mount -B $i /mnt$i; done
-
-		chroot /mnt
-		mount -t efivarfs none /sys/firmware/efi/efivars
-		grub-install /dev/nvme0n1
-		update-grub
-
-
-	rescue repair -->
-		
-		set prefix=(hd0,gpt4)/boot/grub
-		insmod normal
-		normal
+	change machine name --> sudo hostnamectl set-hostname new-hostname
+	change environment --> sudo micro /etc/environment
 
 
 package -->
@@ -69,32 +33,35 @@ security -->
 		create user --> sudo adduser <user-name>
 		change user on terminal --> sudo -u <user> -s
 
-	netstat --> 
-		all --> sudo netstat -tuln
-		grep --> sudo netstat -tuln | grep ':80'
 
-	firewall -->
+	network -->
 
-		status --> sudo ufw status
-		change --> sudo ufw enable/disable
+		netstat --> 
+			all --> sudo netstat -tuln
+			grep --> sudo netstat -tuln | grep ':80'
 
-		add rule --> sudo ufw allow <port>/<protocol>
-		delete rule --> sudo ufw delete allow <port>
+		firewall -->
+
+			status --> sudo ufw status
+			change --> sudo ufw enable/disable
+
+			add rule --> sudo ufw allow <port>/<protocol>
+			delete rule --> sudo ufw delete allow <port>
 	
-	dns -->
-		sudo micro /etc/resolv.conf
+		dns -->
+			sudo micro /etc/resolv.conf
 
-			nameserver 8.8.8.8
-			nameserver 8.8.4.4
+				nameserver 8.8.8.8
+				nameserver 8.8.4.4
 	
-	interface -->
+		interface -->
 
-		mevcut --> ifconfig
-		diğer --> ip addr
+			mevcut --> ifconfig
+			diğer --> ip addr
 
-		kullan --> sudo ifconfig ethX up
-		oluştur --> sudo ip link add ethY type bridge
-		sil --> sudo ip link delete ethY
+			kullan --> sudo ifconfig ethX up
+			oluştur --> sudo ip link add ethY type bridge
+			sil --> sudo ip link delete ethY
 
 	app-armor -->
 
@@ -229,7 +196,38 @@ memory -->
 
 
 
+grub -->
 
+	boot list --> sudo grep "menuentry" /boot/grub/grub.cfg
+
+	install --> sudo grub-install
+	update --> sudo update-grub
+
+	settings --> sudo micro /etc/default/grub
+
+		GRUB_DEFAULT="Windows Boot Manager (on /dev/nvme0n1p1)"
+
+
+	iso repair -->
+
+		sudo su -
+		fdisk -l
+		mount /dev/nvme0n1p5 /mnt
+		mount /dev/nvme0n1p1 /mnt/boot/efi
+
+		for i in /dev /dev/pts /proc /sys /run; do mount -B $i /mnt$i; done
+
+		chroot /mnt
+		mount -t efivarfs none /sys/firmware/efi/efivars
+		grub-install /dev/nvme0n1
+		update-grub
+
+
+	rescue repair -->
+		
+		set prefix=(hd0,gpt4)/boot/grub
+		insmod normal
+		normal
 
 
 

@@ -15,7 +15,7 @@ client -->
 			SERVER_IP="147.93.122.169"
 
 			cat > ~/secret/ovpn/client1.ovpn <<EOF
-			client1
+			client
 			dev tun
 			proto udp
 			remote $SERVER_IP 1194
@@ -55,7 +55,8 @@ client -->
 
 	connect --> 
 		cp ~/client1.ovpn /etc/openvpn/client/client1.conf
-		systemctl restart openvpn-client@lin
+		systemctl restart openvpn-client@client1
+		systemctl enable openvpn-client@client1.service
 
 
 
