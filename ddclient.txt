@@ -1,12 +1,9 @@
 install -->
 	sudo apt update
-	sudo apt install ddclient
+	sudo apt install ddclient -y
 
 
-record -->
-	update --> sudo ddclient -verbose -force
+record --> update --> sudo ddclient -verbose -force
 
 
-config -->
-
-	sudo micro /etc/ddclient.conf
+config --> sudo micro /etc/ddclient.conf

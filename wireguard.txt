@@ -1,0 +1,44 @@
+server -->
+	umask 077
+	wg genkey | tee privatekey | wg pubkey > publickey
+
+	sudo nano /etc/wireguard/wg0.conf -->
+
+		[Interface]
+		PrivateKey = SUNUCUNUN_PRIVATE_KEY
+		Address = 10.0.0.1/24
+		ListenPort = 51820
+		SaveConfig = true
+
+		[Peer]
+		PublicKey = ISTEMCININ_PUBLIC_KEY
+		AllowedIPs = 10.0.0.2/32
+
+
+	sudo systemctl start wg-quick@wg0
+	sudo systemctl enable wg-quick@wg0
+	
+
+
+client -->
+	umask 077
+	wg genkey | tee client-private.key | wg pubkey > client-public.key
+
+	sudo nano /etc/wireguard/client/client1.conf -->
+
+		[Interface]
+		PrivateKey = CLIENT_PRIVATE_KEY
+		Address = 10.0.0.2/24
+		DNS = 1.1.1.1
+
+		[Peer]
+		PublicKey = SERVER_PUBLIC_KEY
+		Endpoint = SERVER_IP:51820
+		AllowedIPs = 0.0.0.0/0
+		PersistentKeepalive = 25
+
+	qrencode -t ansiutf8 < /etc/wireguard/client/client1.conf
+
+
+
+

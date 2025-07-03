@@ -63,6 +63,17 @@ security -->
 			oluştur --> sudo ip link add ethY type bridge
 			sil --> sudo ip link delete ethY
 
+
+		iptables -->
+		
+			ls --> sudo iptables -L -n -v 
+			delete --> sudo iptables -D <chain> <index>
+
+			accept 22 vpn only --> 
+					sudo iptables -A INPUT -i tun0 -p tcp --dport 22 -j ACCEPT
+					sudo iptables -A INPUT -p tcp --dport 22 -j DROP 
+						
+
 	app-armor -->
 
 		disable --> 

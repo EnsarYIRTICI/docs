@@ -14,7 +14,7 @@ sudo ufw allow 8080
 sudo ufw reload
 
 
-admin password --> cat /var/lib/jenkins/secrets/initialAdminPassword
+admin password --> sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 jobs --> ls /var/lib/jenkins/jobs
 
 docker permission -->  
