@@ -20,6 +20,24 @@ nvidia -->
 	check --> nvidia-smi
 
 
+gnome -->
+	sudo apt update && sudo apt upgrade -y && \
+	sudo apt install -y gnome-shell-extensions gnome-tweaks gnome-shell-extension-manager \
+	git curl wget snapd ufw gufw vlc gparted htop neofetch \
+	gnome-software \
+	fonts-firacode fonts-ubuntu \
+	file-roller unzip p7zip-full \
+	gnome-disk-utility \
+	timeshift \
+	ubuntu-restricted-extras \
+	qbittorrent \
+	gimp \
+	gnome-system-monitor \
+	remmina \
+	gnome-calendar \
+	tilix \
+	net-tools && \
+	echo "Kurulum tamamlandı! Sistem yeniden başlatıldığında daha iyi çalışacaktır."
 
 
 
