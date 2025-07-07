@@ -12,6 +12,12 @@ apt -->
 			deb-src http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware
 
 
+
+add a user to the sudo group -->
+				su -
+				usermod -aG sudo ensar
+
+
 utils -->
 	sudo apt update && sudo apt upgrade -y
 	sudo apt install wget curl micro net-tools htop ufw -y
