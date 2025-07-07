@@ -6,11 +6,6 @@ system -->
 	change environment --> sudo micro /etc/environment
 
 
-package -->
-
-	apt --> 
-		source --> ls /etc/apt/sources.list.d/
-
 
 shell -->
 
@@ -204,47 +199,6 @@ memory -->
 			sudo swapoff /swapfile
 			sudo rm /swapfile
 			sudo nano /etc/fstab
-
-
-
-grub -->
-
-	boot list --> sudo grep "menuentry" /boot/grub/grub.cfg
-
-	install --> sudo grub-install
-	update --> sudo update-grub
-
-	settings --> sudo micro /etc/default/grub
-
-		GRUB_DEFAULT="Windows Boot Manager (on /dev/nvme0n1p1)"
-
-
-	iso repair -->
-
-		sudo su -
-		fdisk -l
-		mount /dev/nvme0n1p5 /mnt
-		mount /dev/nvme0n1p1 /mnt/boot/efi
-
-		for i in /dev /dev/pts /proc /sys /run; do mount -B $i /mnt$i; done
-
-		chroot /mnt
-		mount -t efivarfs none /sys/firmware/efi/efivars
-		grub-install /dev/nvme0n1
-		update-grub
-
-
-	rescue repair -->
-		
-		set prefix=(hd0,gpt4)/boot/grub
-		insmod normal
-		normal
-
-
-
-
-
-
 
 
 
