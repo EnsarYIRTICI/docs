@@ -1,10 +1,5 @@
 system -->
 	version --> uname -a
-	code --> lsb_release -c
-
-	change machine name --> sudo hostnamectl set-hostname new-hostname
-	change environment --> sudo micro /etc/environment
-
 
 
 shell -->
@@ -19,70 +14,40 @@ shell -->
 	variable --> num_1 = 5
 
 
-
 security -->
 	
 	user -->
-		me --> whoami
-
-		create user --> sudo adduser <user-name>
-		change user on terminal --> sudo -u <user> -s
+		be root --> su -
 
 
 	network -->
 
 		netstat --> 
-			all --> sudo netstat -tuln
-			grep --> sudo netstat -tuln | grep ':80'
+			all --> netstat -tuln
+			grep --> netstat -tuln | grep ':80'
 
-		firewall -->
 
-			status --> sudo ufw status
-			change --> sudo ufw enable/disable
-
-			add rule --> sudo ufw allow <port>/<protocol>
-			delete rule --> sudo ufw delete allow <port>
-	
-		dns -->
-			sudo micro /etc/resolv.conf
-
-				nameserver 8.8.8.8
-				nameserver 8.8.4.4
 	
 		interface -->
 
 			mevcut --> ifconfig
 			diğer --> ip addr
 
-			kullan --> sudo ifconfig ethX up
-			oluştur --> sudo ip link add ethY type bridge
-			sil --> sudo ip link delete ethY
+			kullan --> ifconfig ethX up
+			oluştur --> ip link add ethY type bridge
+			sil --> ip link delete ethY
 
 
 		iptables -->
 		
-			ls --> sudo iptables -L -n -v 
-			delete --> sudo iptables -D <chain> <index>
+			ls --> iptables -L -n -v 
+			delete --> iptables -D <chain> <index>
 
 			accept 22 vpn only --> 
-					sudo iptables -A INPUT -i tun0 -p tcp --dport 22 -j ACCEPT
-					sudo iptables -A INPUT -p tcp --dport 22 -j DROP 
+					iptables -A INPUT -i tun0 -p tcp --dport 22 -j ACCEPT
+					iptables -A INPUT -p tcp --dport 22 -j DROP 
 						
 
-	app-armor -->
-
-		disable --> 
-			sudo systemctl stop apparmor
-			sudo systemctl disable apparmor
-
-			sudo sed -i 's/^GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="apparmor=0"/' /etc/default/grub && sudo update-grub && sudo reboot
-
-		enable --> 
-
-			sudo systemctl start apparmor
-			sudo systemctl enable apparmor
-	
-			sudo sed -i 's/^GRUB_CMDLINE_LINUX="apparmor=0"/GRUB_CMDLINE_LINUX=""/' /etc/default/grub && sudo update-grub && sudo reboot
 
 
 file -->
@@ -92,7 +57,6 @@ file -->
 		start --> head -10 file.sh
 		end --> less -10 file.sh
 
-	find --> whereis python3
 	
 	list --> ls
 		 ls -l
@@ -112,8 +76,8 @@ file -->
 
 	permission -->
 
-		dosya sahipliği --> sudo chown -R mysql:mysql /mnt/mydata/mariadb
-		yetki düzeyi --> sudo chmod -R 755 /mnt/mydata/MariaDB
+		dosya sahipliği --> chown -R mysql:mysql /mnt/mydata/mariadb
+		yetki düzeyi --> chmod -R 755 /mnt/mydata/MariaDB
 
 		types -->
 
@@ -134,20 +98,6 @@ service -->
 	process -->
 		list --> ps aux
 
-	systemd -->
-
-		systemctl -->
-
-			list -->
-
-				systemctl list-units --type=service
-				systemctl list-units --type=service --state=running
-
-
-		journalctl --> 
-			
-			error list --> journalctl -xe
-
 
 	screen --> 
 		list --> screen -ls
@@ -164,19 +114,18 @@ service -->
 disk -->
 	
 	list --> lsblk
-	mount --> sudo mount /dev/nvme1n1 /mnt/nvme1n1
+	mount --> mount /dev/nvme1n1 /mnt/nvme1n1
 
 	use --> 
 		general --> df -h
 		by file path -->  du -sh /file_name/*
 		
-	create link --> sudo ln -s /mnt/nvme1n1/mydata/turing_panel /var/lib/mysql/turing_panel	
+	create link --> ln -s /mnt/nvme1n1/mydata/turing_panel /var/lib/mysql/turing_panel	
 
 	partition -->
 		
-		delete --> 
-			sudo parted /dev/nvme0n1 rm 9
-			sudo update-grub
+		delete --> parted /dev/nvme0n1 rm 9
+
 
 
 
@@ -184,25 +133,21 @@ memory -->
 
 	genel kullanım --> free -h
 
-	buff/cache clear --> sudo sync && sudo sysctl -w vm.drop_caches=3
+	buff/cache clear --> sync && sysctl -w vm.drop_caches=3
 
 	swap -->
 
 		create -->
-			sudo fallocate -l 4G /swapfile
-			sudo chmod 600 /swapfile
-			sudo mkswap /swapfile
-			sudo swapon /swapfile
+			fallocate -l 4G /swapfile
+			chmod 600 /swapfile
+			mkswap /swapfile
+			swapon /swapfile
 
 
 		disable -->
-			sudo swapoff /swapfile
-			sudo rm /swapfile
-			sudo nano /etc/fstab
-
-
-
-
+			swapoff /swapfile
+			rm /swapfile
+			vi /etc/fstab
 
 
 

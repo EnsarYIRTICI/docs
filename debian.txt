@@ -14,12 +14,69 @@ deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free
 deb-src http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware
 
 
+system -->
+	change machine name --> hostnamectl set-hostname new-hostname
+	change environment --> vi /etc/environment
+
+
 apt --> 
 	source --> ls /etc/apt/sources.list.d/
 
-utils -->
-	sudo apt update && sudo apt upgrade -y
-	sudo apt install wget curl micro net-tools htop ufw -y
+
+	install utils -->
+		sudo apt update && sudo apt upgrade -y
+		sudo apt install wget curl micro net-tools htop ufw -y
+
+
+file -->
+
+	find --> whereis python3
+
+
+service -->
+
+	systemd -->
+
+		log -->
+			journalctl --> 
+			
+				error --> journalctl -xe
+
+
+security --> 
+	
+	network -->
+
+		ufw -->
+
+			status --> sudo ufw status
+			change --> sudo ufw enable/disable
+
+			add rule --> sudo ufw allow <port>/<protocol>
+			delete rule --> sudo ufw delete allow <port>
+
+
+		dns -->
+			vi /etc/resolv.conf
+
+				nameserver 8.8.8.8
+				nameserver 8.8.4.4
+
+	app-armor -->
+
+		disable --> 
+			sudo systemctl stop apparmor
+			sudo systemctl disable apparmor
+
+			sudo sed -i 's/^GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="apparmor=0"/' /etc/default/grub && sudo update-grub && sudo reboot
+
+		enable --> 
+
+			sudo systemctl start apparmor
+			sudo systemctl enable apparmor
+	
+			sudo sed -i 's/^GRUB_CMDLINE_LINUX="apparmor=0"/GRUB_CMDLINE_LINUX=""/' /etc/default/grub && sudo update-grub && sudo reboot
+
 
 
 gui -->
