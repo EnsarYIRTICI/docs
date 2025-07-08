@@ -83,12 +83,7 @@ gui -->
 	screen --> xrandr
 
 	nvidia -->
-		install --> 
-			sudo apt update && sudo apt install build-essential dkms linux-headers-$(uname -r) -y
-		
-			sudo chmod +x NVIDIA-Linux-x86_64-570.133.07.run
-			sudo ./NVIDIA-Linux-x86_64-570.133.07.run
-
+		install --> sudo apt update && sudo apt install build-essential dkms linux-headers-$(uname -r) nvidia-driver -y
 		
 		check --> nvidia-smi
 
