@@ -1,0 +1,7 @@
+status -->
+	all --> sudo fail2ban-client status
+	jail --> sudo fail2ban-client status <jail_adi>
+	config --> sudo nano /etc/fail2ban/jail.conf
+
+
+unbanip --> sudo fail2ban-client set <jail_name> unbanip <ip-address>

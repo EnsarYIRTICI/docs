@@ -6,7 +6,7 @@ Linux -->
 
 	config --> 
 			sudo nano /etc/ssh/sshd_config
-			sudo grep -i passwordauthentication /etc/ssh/sshd_config.d/*.conf
+			sudo grep -Ri passwordauthentication /etc/ssh/
 
 	restart --> sudo systemctl restart ssh
 
