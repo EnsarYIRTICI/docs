@@ -97,8 +97,8 @@ security -->
 		port --> netstat -ano | findstr :<PORT>
 
 
-	netsh -->
 
+	netsh -->
 		firewall --> 
 			inbound --> 
 				list --> netsh advfirewall firewall show rule name=all dir=in
@@ -107,6 +107,9 @@ security -->
 
 			outbound --> 
 				list --> netsh advfirewall firewall show rule name=all dir=out
+
+		reservation -->
+			ls --> netsh interface ipv4 show excludedportrange protocol=tcp
 
 
 		adapter -->
