@@ -34,4 +34,25 @@ github -->
 		gh auth login
 
 
+feat: Yeni özellik
+fix: Hata düzeltme
+
+chore: Altyapı işleri (config, bağımlılık güncelleme, proje setup)
+docs: Dokümantasyon değişiklikleri
+style: Kod stil değişiklikleri (formatlama, boşluk, noktalama, linter uyumu)
+refactor: Kodun davranışını değiştirmeden düzenleme
+test: Test ekleme/düzenleme
+perf: Performans iyileştirmeleri
+
+build: Build sistemi veya bağımlılıklar ile ilgili değişiklikler (pubspec.yaml, gradle, package.json vs.)
+ci: CI/CD yapılandırmaları veya script değişiklikleri (GitHub Actions, GitLab CI, Jenkins)
+
+revert: Önceki bir commit’i geri alma
+release: Versiyon artırma, changelog güncelleme (bazı ekipler chore(release) yazar)
+
+merge: Branch birleştirmeleri (çoğu zaman otomatik üretilir)
+deps: Bağımlılık güncellemeleri (chore yerine daha spesifik)
+hotfix: Production ortamında acil düzeltme (bazı takımlar fix ile birleştiriyor)
+security: Güvenlik açıklarını kapatma ile ilgili değişiklikler
+design / ui: UI/UX değişiklikleri (renk, ikon, layout)
 

@@ -5,8 +5,10 @@ Linux -->
 		sudo apt install openssh-server -y
 
 	config --> 
-			sudo nano /etc/ssh/sshd_config
-			sudo grep -Ri passwordauthentication /etc/ssh/
+		sudo nano /etc/ssh/sshd_config
+		sudo grep -Ri passwordauthentication /etc/ssh/
+
+	pub key --> nano ~\.ssh\authorized_keys
 
 	restart --> sudo systemctl restart ssh
 
