@@ -47,6 +47,22 @@ security -->
 	
 	network -->
 
+		netstat --> 
+			all --> netstat -tuln
+			grep --> netstat -tuln | grep ':80'
+
+
+	
+		interface -->
+
+			mevcut --> ifconfig
+			diğer --> ip addr
+
+			kullan --> ifconfig ethX up
+			oluştur --> ip link add ethY type bridge
+			sil --> ip link delete ethY
+
+
 		ufw -->
 
 			status --> sudo ufw status
