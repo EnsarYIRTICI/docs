@@ -19,6 +19,7 @@ remote -->
 	ls --> git remote -v
 	add --> git remote add origin https://github.com/EnsarYIRTICI/<repository-name>.git
 	change --> git remote set-url origin https://github.com/EnsarYIRTICI/<repository-name>.git
+	del --> git remote rm origin
 
 
 stop follow --> git rm -r --cached .
