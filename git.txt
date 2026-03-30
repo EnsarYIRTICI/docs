@@ -28,6 +28,9 @@ stop follow --> git rm -r --cached .
 config -->
 	small/large case --> git config core.ignorecase false
 
+branch -->
+	ls --> git branch
+
 github -->
 	 login -->
 		sudo apt update
@@ -35,25 +38,24 @@ github -->
 		gh auth login
 
 
-feat: Yeni özellik
-fix: Hata düzeltme
+feat: New feature
+fix: Bug fix
 
-chore: Altyapı işleri (config, bağımlılık güncelleme, proje setup)
-docs: Dokümantasyon değişiklikleri
-style: Kod stil değişiklikleri (formatlama, boşluk, noktalama, linter uyumu)
-refactor: Kodun davranışını değiştirmeden düzenleme
-test: Test ekleme/düzenleme
-perf: Performans iyileştirmeleri
+refactor: Code cleanup without changing behavior (e.g. remove unused function)
+chore: Maintenance tasks (config, dependency updates, project setup)
+docs: Documentation changes
+style: Code style changes (formatting, spacing, punctuation, linter compliance)
+test: Add or update tests
+perf: Performance improvements
 
-build: Build sistemi veya bağımlılıklar ile ilgili değişiklikler (pubspec.yaml, gradle, package.json vs.)
-ci: CI/CD yapılandırmaları veya script değişiklikleri (GitHub Actions, GitLab CI, Jenkins)
+build: Build system or dependency-related changes (pubspec.yaml, gradle, package.json, etc.)
+ci: CI/CD configuration or script changes (GitHub Actions, GitLab CI, Jenkins)
 
-revert: Önceki bir commit’i geri alma
-release: Versiyon artırma, changelog güncelleme (bazı ekipler chore(release) yazar)
+revert: Revert a previous commit
+release: Version bump, changelog updates (some teams use chore(release))
 
-merge: Branch birleştirmeleri (çoğu zaman otomatik üretilir)
-deps: Bağımlılık güncellemeleri (chore yerine daha spesifik)
-hotfix: Production ortamında acil düzeltme (bazı takımlar fix ile birleştiriyor)
-security: Güvenlik açıklarını kapatma ile ilgili değişiklikler
-design / ui: UI/UX değişiklikleri (renk, ikon, layout)
-
+merge: Branch merges (usually auto-generated)
+deps: Dependency updates (more specific alternative to chore)
+hotfix: Urgent production fix (some teams combine this with fix)
+security: Security vulnerability fixes
+design / ui: UI/UX changes (colors, icons, layout)

@@ -1,7 +1,6 @@
 system -->
 	version --> uname -a
 
-
 shell -->
 
 	konsol çıktısı --> echo 'Merhaba Dünya' 
