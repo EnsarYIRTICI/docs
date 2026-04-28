@@ -1,0 +1,6 @@
+uci set network.lan.ipaddr='192.168.1.2'
+uci set network.lan.netmask='255.255.255.0'
+uci commit network
+/etc/init.d/network restart
+
+http://192.168.1.2
