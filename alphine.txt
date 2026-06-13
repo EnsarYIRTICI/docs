@@ -1,0 +1,6 @@
+system --> 
+	hostname--> sudo hostname <new>
+
+network -->
+	r --> sudo rc-service networking restart
+ 
